@@ -22,7 +22,7 @@ fi
 
 SKI="$(grep -A1 "Subject Key Identifier"  "$CLIENT_CERT" | tail -n 1 | tr -d ' ')"
 AKI="$(grep -A1 "Authority Key Identifier"  "$CLIENT_CERT" | tail -n 1 | tr -d ' ')"
-CLIENT_ID="$SKI:$AKI"
+CLIENT_ID="$SKI:keyid:$AKI"
 
 CLIENT_CERT_SHA="$(openssl x509 -in "$CLIENT_CERT" -noout -sha256 -fingerprint | tr '[:upper:]' '[:lower:]' | tr -d : | sed 's/.*=//')"
 
@@ -38,7 +38,7 @@ cat >> config/clients.yml <<EOF
   - key: securityProfile
     value: $CLIENT_SECURITY_PROFILE
   - key: referringConnector
-    value: http://${CLIENT_NAME}.demo
+    value: http://${CLIENT_NAME}
   - key: "@type"
     value: ids:DatPayload
   - key: "@context"

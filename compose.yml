@@ -12,6 +12,7 @@ services:
       - UI_PATH=${UI_PATH}
     volumes:
       - ./nginx.${OMEJDN_ENVIRONMENT}.conf:/etc/nginx/templates/default.conf.template
+      - ./nginx.conf:/etc/nginx/nginx.conf
       - ${TLS_CERT}:/etc/nginx/omejdn.cert
       - ${TLS_KEY}:/etc/nginx/omejdn.key
 
@@ -26,6 +27,7 @@ services:
       - OMEJDN_ACCEPT_AUDIENCE=idsc:IDS_CONNECTORS_ALL
       - OMEJDN_DEFAULT_AUDIENCE=idsc:IDS_CONNECTORS_ALL
       - OMEJDN_ADMIN=${ADMIN_USERNAME}:${ADMIN_PASSWORD}
+      - OMEJDN_PLUGINS=config/plugins.yml
     volumes:
       - ./config:/opt/config
       - ./keys:/opt/keys
