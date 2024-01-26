@@ -32,10 +32,10 @@ services:
       - ./config:/opt/config
       - ./keys:/opt/keys
 
-  omejdn-ui:
-    image: ghcr.io/fraunhofer-aisec/omejdn-ui:${UI_VERSION}
-    restart: unless-stopped
-    environment:
-      - OIDC_ISSUER=${OMEJDN_ISSUER}
-      - API_URL=${OMEJDN_ISSUER}/api/v1
-      - CLIENT_ID=adminUI
+#  omejdn-ui:
+#    image: ghcr.io/fraunhofer-aisec/omejdn-ui:${UI_VERSION}
+#    restart: unless-stopped
+#    environment:
+#      - OIDC_ISSUER=${OMEJDN_ISSUER}
+#      - API_URL=${OMEJDN_ISSUER}/api/v1
+#      - CLIENT_ID=adminUI
